@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Interst Tracker</title>
+</head>
+<body>
+    <h1>Register Player</h1>
+    <input id="username" placeholder="Username">
+    <input id="email" placeholder="email">
+    <input id="class" placeholder="Class">
+    <button onclick="createUser()">Resister</button>
+    <h2>Players</h2>
+    <ul id="userList">
+        <!-- here it goes -->
+    </ul>
+
+    <script>
+        const API_URL="http://localhost:5138/api/UserInterests";
+
+        async function getUsers(){
+            const res = await fetch(API_URL);
+            const data= await res.json();
+
+            const list = document.getElementById("userList");
+            list.innerHTML="";
+
+            data.forEach(user=>{
+                const li = document.createElement("li");
+                li.textContent=`${user.username} - ${user.favoriteClass}`;
+                list.appendChild(li);
+            });
+        }
+
+        async function createUser(){
+            
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const favoriteClass = document.getElementById("class").value;
+
+            await fetch(API_URL,{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({username, email, favoriteClass})
+            });
+
+            getUsers();
+        }
+
+        getUsers();
+    </script>
+</body>
+</html>
