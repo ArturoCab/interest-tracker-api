@@ -4,17 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Interst Tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Register Player</h1>
-    <input id="username" placeholder="Username">
-    <input id="email" placeholder="email">
-    <input id="class" placeholder="Class">
-    <button onclick="createUser()">Resister</button>
-    <h2>Players</h2>
-    <ul id="userList">
-        <!-- here it goes -->
-    </ul>
+    <div class="container">
+        <div></div>
+        <main>
+        <header>
+            <h1>Register Player</h1>
+            <input id="username" placeholder="Username">
+            <input id="email" placeholder="email">
+            <input id="class" placeholder="Class">
+            <button onclick="createUser()">Resister</button>
+        </header>
+        <div class="players">
+            <h2>Players</h2>
+            <ul id="userList">
+                <!-- here it goes -->
+            </ul>
+        </div>
+        </main>
+        <div></div>
+
+    </div>
 
     <script>
         const API_URL="http://localhost:5138/api/UserInterests";
